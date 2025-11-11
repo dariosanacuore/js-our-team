@@ -42,11 +42,14 @@ const teamMembers = [
  * Dato un array di oggetti rappresentante un team di un’azienda, creare una pagina dedicata  in cui mostrare una card per ciascun componente.
  */
 
+
 const listElem = document.querySelector(".cards-container");
-for (let i = 0; i < teamMembers.length; i++) {
-  //const curMember = nomi[i];
-  const { name, role, email, img } = teamMembers[i];
-  const item = `
+function renderCards() {
+  listElem.innerHTML = "";
+  for (let i = 0; i < teamMembers.length; i++) {
+    //const curMember = nomi[i];
+    const { name, role, email, img } = teamMembers[i];
+    const item = `
      <div class="card mb-3 bg-dark" style="max-width: 350px;">
         <div class="row g-0">
           <div class="col-md-4">
@@ -62,6 +65,27 @@ for (let i = 0; i < teamMembers.length; i++) {
         </div>
      </div>
   `
-  listElem.innerHTML += item;
+    listElem.innerHTML += item;
+  }
 }
+renderCards();
+//form
 
+const nameInput = document.getElementById("nome");
+const roleInput = document.getElementById("ruolo");
+const emailInput = document.getElementById("email");
+const imgInput = document.getElementById("img");
+const form = document.querySelector(".card-form");
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  console.log("submit");
+
+  const newMember = {
+    name: nameInput.value.trim(),
+    role: roleInput.value.trim(),
+    email: emailInput.value.trim(),
+    img: imgInput.files[0]
+  };
+  teamMembers.push(newMember);
+  renderCards();
+});

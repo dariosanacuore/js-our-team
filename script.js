@@ -42,23 +42,25 @@ const teamMembers = [
  * Dato un array di oggetti rappresentante un team di un’azienda, creare una pagina dedicata  in cui mostrare una card per ciascun componente.
  */
 
-const listElem = document.querySelector(".card");
+const listElem = document.querySelector(".cards-container");
 for (let i = 0; i < teamMembers.length; i++) {
   //const curMember = nomi[i];
   const { name, role, email, img } = teamMembers[i];
   const item = `
-     <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="${img}" class="img-fluid rounded-start">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">${name}</h5>
-                            <p class="card-text">${role}</p>
-                            <p class="card-text"><small class="text-body-secondary ">${email}</small></p>
-                        </div>
-                    </div>
-                </div>
+     <div class="card mb-3 bg-dark" style="max-width: 350px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="${img}" class="img-fluid rounded-start" alt="${name}">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title text-light">${name}</h5>
+              <p class="card-text text-light">${role}</p>
+              <p class="card-text "><small class=" text-info">${email}</small></p>
+            </div>
+          </div>
+        </div>
+     </div>
   `
   listElem.innerHTML += item;
 }
